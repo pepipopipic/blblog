@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&display=swap');
+
+@layer base {
+  :root {
+    /* ── Vogue / Terracotta palette ── */
+    --bg:             #faf8f5;
+    --bg-subtle:      #f3ede6;
+    --surface:        #ffffff;
+    --border:         #e0d8cf;
+    --border-subtle:  #ece6de;
+
+    --text:           #1e1a16;
+    --text-muted:     #6b6257;
+    --text-faint:     #a89c90;
+
+    /* テラコッタ: メインアクセント */
+    --accent:         #b05a3a;
+    --accent-hover:   #8f4830;
+    --accent-soft:    #e8c9bc;
+    --accent-bg:      #faf1ec;
+
+    /* スモーキーピンク: セカンダリ */
+    --pink:           #b07080;
+    --pink-soft:      #e8cfd5;
+    --pink-bg:        #faf3f5;
+
+    /* ウォームブラウン: 装飾 */
+    --warm:           #8a6a50;
+    --warm-soft:      #d9c9b8;
+
+    --star:           #b87333;
+  }
+
+  .dark {
+    --bg:             #181410;
+    --bg-subtle:      #221d18;
+    --surface:        #2a2420;
+    --border:         #3d352c;
+    --border-subtle:  #332b24;
+
+    --text:           #f0ebe4;
+    --text-muted:     #9e9084;
+    --text-faint:     #5e5248;
+
+    --accent:         #c87055;
+    --accent-hover:   #d98060;
+    --accent-soft:    #4a2a1e;
+    --accent-bg:      #241810;
+
+    --pink:           #b88090;
+    --pink-soft:      #3d2028;
+    --pink-bg:        #201218;
+
+    --warm:           #9e7e62;
+    --warm-soft:      #3a2e24;
+
+    --star:           #c98840;
+  }
+
+  * { border-color: var(--border-subtle); }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 見出しはCormorant(欧文) + Noto Serif JP(和文)のスタック */
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    letter-spacing: 0.03em;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background-color: var(--accent-soft);
+    color: var(--text);
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9px; }
+}
+
+@layer components {
+  /* ── Container ── */
+  .container-content {
+    @apply max-w-[740px] mx-auto px-5 sm:px-10;
+  }
+  .container-wide {
+    @apply max-w-[1100px] mx-auto px-5 sm:px-10;
+  }
+
+  /* ── Card ── */
+  .card {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    @apply rounded-md shadow-[0_1px_4px_0_rgb(0_0_0/0.05)] transition-all duration-200;
+  }
+  .card-hover:hover {
+    border-color: var(--border);
+    @apply shadow-[0_4px_16px_0_rgb(0_0_0/0.08)] -translate-y-px;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    background-color: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-soft);
+    @apply inline-block text-[11px] px-2.5 py-0.5 rounded-sm font-medium tracking-widest uppercase;
+  }
+  .badge-pink {
+    background-color: var(--pink-bg);
+    color: var(--pink);
+    border: 1px solid var(--pink-soft);
+    @apply inline-block text-[11px] px-2.5 py-0.5 rounded-sm font-medium tracking-widest uppercase;
+  }
+  .badge-neutral {
+    background-color: var(--bg-subtle);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    @apply inline-block text-[11px] px-2.5 py-0.5 rounded-sm tracking-wide;
+  }
+
+  /* ── Tag pill ── */
+  .tag-pill {
+    background-color: var(--bg-subtle);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    @apply inline-flex items-center text-xs px-3 py-1 rounded-full transition-colors duration-200 cursor-pointer;
+  }
+  .tag-pill:hover {
+    background-color: var(--accent-bg);
+    color: var(--accent);
+    border-color: var(--accent-soft);
+  }
+
+  /* ── Button ── */
+  .btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+    @apply text-sm px-6 py-2.5 rounded-sm font-medium tracking-wider transition-all duration-200;
+  }
+  .btn-primary:hover { background-color: var(--accent-hover); }
+
+  .btn-ghost {
+    color: var(--accent);
+    @apply text-sm font-medium tracking-wide transition-opacity duration-200;
+  }
+  .btn-ghost:hover { @apply opacity-60; }
+
+  /* ── Section title ── */
+  .section-title {
+    color: var(--text);
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    @apply text-xl font-semibold tracking-wide;
+  }
+
+  /* ── Eyebrow (small label above heading) ── */
+  .eyebrow {
+    color: var(--accent);
+    @apply text-[10px] font-medium tracking-[0.25em] uppercase;
+  }
+
+  /* ── Link ── */
+  .link {
+    color: var(--accent);
+    @apply transition-opacity duration-200;
+  }
+  .link:hover { @apply opacity-60; }
+
+  /* ── Divider ── */
+  .divider { border-color: var(--border-subtle); @apply border-t; }
+
+  /* ── Prose (review body) ── */
+  .prose-review {
+    color: var(--text);
+    font-weight: 300;
+    @apply text-[15px] leading-[2.05];
+  }
+  .prose-review h2 {
+    color: var(--text);
+    border-color: var(--accent-soft);
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    @apply text-xl font-semibold mt-14 mb-5 border-b pb-2;
+  }
+  .prose-review h3 {
+    color: var(--text);
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    @apply text-lg font-semibold mt-10 mb-3;
+  }
+  .prose-review p    { @apply mb-6; }
+  .prose-review strong { color: var(--text); @apply font-semibold; }
+  .prose-review ul, .prose-review ol { @apply pl-5 mb-6 space-y-2; }
+  .prose-review ul   { @apply list-disc; }
+  .prose-review ol   { @apply list-decimal; }
+  .prose-review hr   { border-color: var(--border-subtle); @apply my-12; }
+  .prose-review blockquote {
+    border-color: var(--accent-soft);
+    color: var(--text-muted);
+    background-color: var(--accent-bg);
+    @apply pl-5 pr-4 py-3 border-l-2 rounded-r my-8 not-italic text-sm leading-loose;
+  }
+  .prose-review a    { color: var(--accent); @apply underline underline-offset-2; }
+
+  /* ── Stars ── */
+  .star-filled { color: var(--star); }
+  .star-empty  { color: var(--border); }
+
+  /* ── Page header (共通) ── */
+  .page-header {
+    @apply pb-10 mb-12;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
+
+@layer utilities {
+  .text-base-color   { color: var(--text); }
+  .text-muted-color  { color: var(--text-muted); }
+  .text-faint-color  { color: var(--text-faint); }
+  .accent-color      { color: var(--accent); }
+  .bg-base           { background-color: var(--bg); }
+  .bg-subtle         { background-color: var(--bg-subtle); }
+  .bg-surface        { background-color: var(--surface); }
+  .border-subtle-color { border-color: var(--border-subtle); }
+  .font-display      { font-family: 'Cormorant Garamond', 'Noto Serif JP', serif; }
+}
