@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Review, CATEGORIES, TAGS, formatDate } from '@/types'
+import { Review, CATEGORIES, TAGS } from '@/types'
+import { formatDate } from '@/lib/reviews'
 import { RatingStars } from './RatingStars'
 
 type Props = {
